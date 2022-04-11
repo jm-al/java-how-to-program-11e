@@ -23,7 +23,9 @@ public class EliminacaoDeDuplicatas {
 		Scanner input = new Scanner(System.in);
 
 		List<String> list = new ArrayList<String>();
+		
 		//Favoring character sentinel vs control character (Ctl-Z, Ctl-D) as the latter is terminal-specific
+		System.out.println("Insira uma série de nomes, 'Q' para finalizar: ");
 		System.out.print("Enter a phrase or series of words, 'Q' to finalize: ");
 
 		while (input.hasNext()){
