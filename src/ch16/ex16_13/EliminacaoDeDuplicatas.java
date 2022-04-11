@@ -1,8 +1,11 @@
-/*
+/**
  * Objetivo: 16.13 (Eliminação de duplicatas) Escreva um programa que lê em uma série nomes e 
  * elimina duplicatas armazenando-os em um Set. Permita que o usuário procure um primeiro nome.
  * 
  * Autor: Gustavo Alves
+ -------------------------------------------------------------------------------------------
+ (Counting Duplicate Words) Write a program that determines and prints the number of duplicate
+ words in a sentence. Treat uppercase and lowercase letters the same. Ignore punctuation.
  */
 
 package ch16.ex16_13;
@@ -20,24 +23,23 @@ public class EliminacaoDeDuplicatas {
 		Scanner input = new Scanner(System.in);
 
 		List<String> list = new ArrayList<String>();
+		
+		//Favoring character sentinel vs control character (Ctl-Z, Ctl-D) as the latter is terminal-specific
+		System.out.println("Insira uma série de nomes, 'Q' para finalizar: ");
+		System.out.print("Enter a phrase or series of words, 'Q' to finalize: ");
 
-		System.out.printf("%s%n%s%n", "Insira uma série de nomes.",
-				"Digite o indicator de fim do arquivo (<Ctrl> z) para finalizar a entrada.");
-
-		while (input.hasNext())
-			list.add(input.next());
-
+		while (input.hasNext()){
+			String word = input.next().toUpperCase();
+			if (word.equals("Q")) break;
+			list.add(word);
+		}
 		input.close();
 
-		eliminarDuplicatas(list);
+		System.out.printf("%n%d duplicate words.", duplicates(list));
 	}
 
-	public static void eliminarDuplicatas(Collection<String> values) {
+	private static int duplicates(Collection<String> values) {
 		Set<String> set = new HashSet<String>(values);
-
-		System.out.print("Nomes não duplicados: ");
-
-		for (String value : set)
-			System.out.printf("%s ", value);
+		return values.size() - set.size();
 	}
 }
